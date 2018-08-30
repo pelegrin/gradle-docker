@@ -23,12 +23,6 @@ sourceSets {
     integTest {
         compileClasspath += main.output + test.output
         runtimeClasspath += main.output + test.output
-        groovy {
-            srcDir 'src/integTest/groovy'
-        }
-        resources {
-            srcDir 'src/integTest/resources'
-        }
     }
 }
 
@@ -52,11 +46,11 @@ dependencies {
 task integTest(type: Test) {
     group = 'verification'
     description = 'Runs the integration tests.'
-    testClassesDir = sourceSets.integTest.output.classesDir
+    testClassesDirs = sourceSets.integTest.output.classesDirs
     classpath = sourceSets.integTest.runtimeClasspath
 
-    reports.html.destination = file("${reporting.baseDir}/integTests")
-    reports.junitXml.destination = file("$buildDir/integTest-results")
+    //reports.html.dir = file("${reporting.baseDir}/integTests")
+    //reports.junitXml.destination = file("$buildDir/integTest-results")
 }
 
 // run integration tests after unit tests if both are scheduled for execution
@@ -67,8 +61,8 @@ check.dependsOn(integTest)
 
 jacocoTestReport {
     reports {
-        xml.enabled true
-        html.enabled true
+        xml.enabled = true
+        html.enabled = true
     }
 }
 
