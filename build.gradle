@@ -15,10 +15,6 @@ repositories {
 apply from: file('gradle/idea.gradle')
 apply from: file('gradle/publish.gradle')
 
-task wrapper(type: Wrapper) {
-    gradleVersion = '4.9'
-}
-
 sourceSets {
     integTest {
         compileClasspath += main.output + test.output
